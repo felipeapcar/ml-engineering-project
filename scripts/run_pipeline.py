@@ -36,9 +36,13 @@ best_params = {
     'eval_metric': 'logloss'
 }
 
+mlflow.set_experiment("Fraud Detection")
+mlflow.set_tracking_uri("http://127.0.0.1:5000/")
+
 with mlflow.start_run():
     # --- Entrenar ---
     model = train_model(X_train, y_train, best_params)
+    mlflow.log_params(best_params)
 
     # --- Evaluar ---
     metrics = evaluate_model(model, X_test, y_test)
@@ -54,4 +58,4 @@ with mlflow.start_run():
      # --- Log scaler ---
     mlflow.log_artifact(BASE_DIR / "models" / "scaler.pkl")
     mlflow.log_artifact(BASE_DIR / "models" / "iso.pkl")
-    mlflow.sklearn.log_model(model, BASE_DIR / "models" / "fraud_model.pkl")
+    mlflow.sklearn.log_model(model, artifact_path="fraud_model")
