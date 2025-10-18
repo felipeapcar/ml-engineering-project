@@ -14,4 +14,4 @@ RUN pip install --no-cache-dir -r requirements.txt
 COPY . .
 
 # Comando por defecto (podemos actualizar esto luego)
-CMD ["python", "scripts/run_pipeline.py"]
+CMD ["python", "-m", "scripts.run_pipeline"]
