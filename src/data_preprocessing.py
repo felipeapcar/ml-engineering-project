@@ -1,6 +1,9 @@
 import pandas as pd
 from sklearn.preprocessing import StandardScaler
 import joblib
+from pathlib import Path
+
+BASE_DIR = Path(__file__).resolve().parent.parent
 
 def load_and_preprocess(data):
     # Cargar dataset
@@ -13,6 +16,6 @@ def load_and_preprocess(data):
     X_scaled = scaler.fit_transform(X)
     
     # Guardar scaler
-    joblib.dump(scaler, 'scaler.pkl')
+    joblib.dump(scaler, BASE_DIR / "models" / 'scaler.pkl')
     
     return X_scaled, y, scaler

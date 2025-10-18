@@ -5,6 +5,8 @@ from src.evaluate_model import evaluate_model
 from src.export_model import save_model
 from src.isolation_forest import train_isolation_forest
 from pathlib import Path
+import mlflow
+import mlflow.sklearn
 
 BASE_DIR = Path(__file__).resolve().parent.parent  # sube un nivel desde scripts/
 TRAIN_DATA_PATH = BASE_DIR / "data" / "processed" / "train_data.csv"
@@ -34,15 +36,22 @@ best_params = {
     'eval_metric': 'logloss'
 }
 
-# --- Entrenar ---
-model = train_model(X_train, y_train, best_params)
+with mlflow.start_run():
+    # --- Entrenar ---
+    model = train_model(X_train, y_train, best_params)
 
-# --- Evaluar ---
-metrics = evaluate_model(model, X_test, y_test)
-print("=== Final Model Evaluation ===")
-for k, v in metrics.items():
-    print(f"{k}: {v:.4f}")
+    # --- Evaluar ---
+    metrics = evaluate_model(model, X_test, y_test)
+    print("=== Final Model Evaluation ===")
+    for k, v in metrics.items():
+        print(f"{k}: {v:.4f}")
+        mlflow.log_metric(k, v)
 
-# --- Exportar ---
-save_model(model, 'fraud_model.pkl')
-print("\n✅ Pipeline completo: Modelo y scaler exportados.")
+    # --- Exportar ---
+    save_model(model, 'fraud_model.pkl')
+    print("\n✅ Pipeline completo: Modelo y scaler exportados.")
+
+     # --- Log scaler ---
+    mlflow.log_artifact(BASE_DIR / "models" / "scaler.pkl")
+    mlflow.log_artifact(BASE_DIR / "models" / "iso.pkl")
+    mlflow.sklearn.log_model(model, BASE_DIR / "models" / "fraud_model.pkl")
