@@ -1,0 +1,2 @@
+[console_scripts]
+run-fraud-pipeline = scripts.run_pipeline:main
