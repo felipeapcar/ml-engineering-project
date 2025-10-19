@@ -8,12 +8,13 @@ from pathlib import Path
 import mlflow
 import mlflow.sklearn
 from datetime import datetime
+import os
 
 # Config
 BASE_DIR = Path(__file__).resolve().parent.parent
 TRAIN_DATA_PATH = BASE_DIR / "data" / "processed" / "train_data.csv"
 
-MLFLOW_TRACKING_URI = "http://localhost:5000"
+MLFLOW_TRACKING_URI = os.getenv("MLFLOW_TRACKING_URI", "http://localhost:5000")
 EXPERIMENT_NAME = "Fraud Detection"
 
 USE_SMOTE = True

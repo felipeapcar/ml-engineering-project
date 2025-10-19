@@ -1,0 +1,22 @@
+[2025-10-19T20:31:46.081+0000] {local_task_job_runner.py:123} INFO - ::group::Pre task execution logs
+[2025-10-19T20:31:46.106+0000] {taskinstance.py:2613} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: test_dag.check_models_directory manual__2025-10-19T20:31:41.526411+00:00 [queued]>
+[2025-10-19T20:31:46.114+0000] {taskinstance.py:2613} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: test_dag.check_models_directory manual__2025-10-19T20:31:41.526411+00:00 [queued]>
+[2025-10-19T20:31:46.115+0000] {taskinstance.py:2866} INFO - Starting attempt 1 of 2
+[2025-10-19T20:31:46.131+0000] {taskinstance.py:2889} INFO - Executing <Task(BashOperator): check_models_directory> on 2025-10-19 20:31:41.526411+00:00
+[2025-10-19T20:31:46.139+0000] {standard_task_runner.py:72} INFO - Started process 224 to run task
+[2025-10-19T20:31:46.144+0000] {standard_task_runner.py:104} INFO - Running: ['***', 'tasks', 'run', 'test_dag', 'check_models_directory', 'manual__2025-10-19T20:31:41.526411+00:00', '--job-id', '5', '--raw', '--subdir', 'DAGS_FOLDER/test_dag.py', '--cfg-path', '/tmp/tmp_o0unub_']
+[2025-10-19T20:31:46.148+0000] {standard_task_runner.py:105} INFO - Job 5: Subtask check_models_directory
+[2025-10-19T20:31:46.220+0000] {task_command.py:467} INFO - Running <TaskInstance: test_dag.check_models_directory manual__2025-10-19T20:31:41.526411+00:00 [running]> on host 642c713eb029
+[2025-10-19T20:31:46.307+0000] {taskinstance.py:3132} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='***' AIRFLOW_CTX_DAG_ID='test_dag' AIRFLOW_CTX_TASK_ID='check_models_directory' AIRFLOW_CTX_EXECUTION_DATE='2025-10-19T20:31:41.526411+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='manual__2025-10-19T20:31:41.526411+00:00'
+[2025-10-19T20:31:46.309+0000] {taskinstance.py:731} INFO - ::endgroup::
+[2025-10-19T20:31:46.320+0000] {subprocess.py:78} INFO - Tmp dir root location: /tmp
+[2025-10-19T20:31:46.322+0000] {subprocess.py:88} INFO - Running command: ['/usr/bin/bash', '-c', 'ls -la /opt/***/models/ || echo "Models directory not found"']
+[2025-10-19T20:31:46.338+0000] {subprocess.py:99} INFO - Output:
+[2025-10-19T20:31:46.345+0000] {subprocess.py:106} INFO - ls: cannot access '/opt/***/models/': No such file or directory
+[2025-10-19T20:31:46.346+0000] {subprocess.py:106} INFO - Models directory not found
+[2025-10-19T20:31:46.348+0000] {subprocess.py:110} INFO - Command exited with return code 0
+[2025-10-19T20:31:46.382+0000] {taskinstance.py:340} INFO - ::group::Post task execution logs
+[2025-10-19T20:31:46.385+0000] {taskinstance.py:352} INFO - Marking task as SUCCESS. dag_id=test_dag, task_id=check_models_directory, run_id=manual__2025-10-19T20:31:41.526411+00:00, execution_date=20251019T203141, start_date=20251019T203146, end_date=20251019T203146
+[2025-10-19T20:31:46.438+0000] {local_task_job_runner.py:266} INFO - Task exited with return code 0
+[2025-10-19T20:31:46.457+0000] {taskinstance.py:3895} INFO - 0 downstream tasks scheduled from follow-on schedule check
+[2025-10-19T20:31:46.461+0000] {local_task_job_runner.py:245} INFO - ::endgroup::
