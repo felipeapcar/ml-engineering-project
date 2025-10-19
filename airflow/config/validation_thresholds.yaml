@@ -1,0 +1,28 @@
+# Validation thresholds for fraud detection model
+
+# Model performance minimum thresholds
+model_performance:
+  min_roc_auc: 0.85
+  min_precision: 0.70
+  min_recall: 0.60
+  min_f1_score: 0.65
+
+# Model comparison thresholds
+model_comparison:
+  min_improvement: 0.01  # 1% improvement in ROC-AUC required
+  max_recall_drop: 0.02  # Max 2% drop in recall allowed
+  min_precision_maintenance: 0.00  # Must maintain precision
+
+# Data quality thresholds
+data_quality:
+  max_missing_pct: 5.0  # Maximum 5% missing values
+  min_fraud_rate_pct: 0.01  # Minimum 0.01% fraud
+  max_fraud_rate_pct: 10.0  # Maximum 10% fraud
+  max_amount: 100000  # Maximum transaction amount
+
+# Notification settings
+notifications:
+  slack_enabled: true
+  email_enabled: true
+  email_recipients:
+    - "team@example.com"
