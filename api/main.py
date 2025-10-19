@@ -90,8 +90,8 @@ def root():
     return {"message": "Fraud Detection API", "status": "running"}
 
 @app.post("/predict")
-def predict(data: dict):
-    df = pd.DataFrame([data])
+def predict(data: TransactionData):
+    df = pd.DataFrame([data.model_dump()])
     
     # Agregar feature de anomalía
     df["is_anomaly"] = iso_forest.predict(df)  # o predict_proba si quieres
